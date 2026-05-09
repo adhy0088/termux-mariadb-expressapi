@@ -12,8 +12,8 @@ chmod +x mariadb.sh api-express.sh
 Jalankan database terlebih dahulu:
 ```Bash
 ./mariadb.sh
-Buka session/tab baru di Termux, lalu jalankan API:
 ```
+Buka session/tab baru di Termux, lalu jalankan API:
 
 ```Bash
 ./api-express.sh
@@ -29,4 +29,15 @@ Skrip ini menggunakan curl untuk mengambil data dan jq untuk memproses JSON. Pas
 pkg install jq.
 ```
 
-Cara MenjalankanBeri izin eksekusi:chmod +x seeder.shJalankan skrip:./seeder.shPenjelasan LogikaAkses Data: Skrip ini memanggil action=getItems dan action=getTransactions yang sudah Anda buat di doGet(e) Apps Script.  Integritas Relasional: Tabel items diisi lebih dulu sebelum transactions karena adanya Foreign Key pada itemId.  Penanganan Null: Menggunakan jq dengan operator // untuk memberikan nilai default (seperti 0 untuk harga atau Umum untuk kategori) agar tidak terjadi error saat insert ke MariaDB.Format SQL: Skrip menggunakan INSERT IGNORE untuk barang agar jika skrip dijalankan ulang, tidak terjadi error duplikasi pada ID barang yang sama. 
+Cara MenjalankanBeri izin eksekusi:
+```Bash
+chmod +x seeder.sh
+```
+Jalankan skrip:
+```bash
+./seeder.sh
+```
+# Penjelasan Logika Akses Data: 
+Skrip ini memanggil action=getItems dan action=getTransactions yang sudah Anda buat di doGet(e) Apps Script.  
+Integritas Relasional: Tabel items diisi lebih dulu sebelum transactions karena adanya Foreign Key pada itemId.  
+Penanganan Null: Menggunakan jq dengan operator // untuk memberikan nilai default (seperti 0 untuk harga atau Umum untuk kategori) agar tidak terjadi error saat insert ke MariaDB.Format SQL: Skrip menggunakan INSERT IGNORE untuk barang agar jika skrip dijalankan ulang, tidak terjadi error duplikasi pada ID barang yang sama. 
