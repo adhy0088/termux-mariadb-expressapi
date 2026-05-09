@@ -1,6 +1,31 @@
 # termux-mariadb-expressapi
 ini adalah langkah Migrasi dari Google Sheets ke MariaDB akan memberikan performa yang jauh lebih stabil, integritas data yang lebih kuat, dan skalabilitas yang lebih baik untuk sistem inventaris
 
+
+# install
+```Bash
+pkg install php php-fpm nginx mariadb composer wget zip
+```
+```Bash
+mariadb
+```
+buat sesi baru termux
+```Bash
+mariadb -u root
+```
+```Bash
+show databases;
+```
+```Bash
+use mysql;
+```
+```Bash
+set password for root@localhost password('admin123');;
+flush privileges;
+exit;
+```
+
+
 Cara Penggunaan:
 Simpan kedua file di direktori home Termux Anda.
 
