@@ -4,7 +4,7 @@ ini adalah langkah Migrasi dari Google Sheets ke MariaDB akan memberikan perform
 
 # install
 ```Bash
-pkg install php php-fpm nginx mariadb composer wget zip
+pkg install php php-fpm nginx mariadb composer wget zip -y
 ```
 ```Bash
 mariadb
@@ -12,14 +12,8 @@ mariadb
 buat sesi baru termux
 ```Bash
 mariadb -u root
-```
-```Bash
 show databases;
-```
-```Bash
 use mysql;
-```
-```Bash
 set password for root@localhost password('admin123');;
 flush privileges;
 exit;
