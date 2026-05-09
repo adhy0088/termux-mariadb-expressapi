@@ -2,14 +2,17 @@
 ini adalah langkah Migrasi dari Google Sheets ke MariaDB akan memberikan performa yang jauh lebih stabil, integritas data yang lebih kuat, dan skalabilitas yang lebih baik untuk sistem inventaris
 
 
-# install
+# install package
 ```Bash
 pkg install php php-fpm nginx mariadb composer wget zip -y
 ```
+# jalankan mariadb
 ```Bash
 mariadb
 ```
+# setting mariadb
 buat sesi baru termux
+
 ```Bash
 mariadb -u root
 show databases;
