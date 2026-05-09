@@ -14,7 +14,7 @@ buat sesi baru termux
 mariadb -u root
 show databases;
 use mysql;
-set password for root@localhost password('admin123');;
+set password for root@localhost password('admin123');
 flush privileges;
 exit;
 ```
