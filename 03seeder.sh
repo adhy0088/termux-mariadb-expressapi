@@ -22,7 +22,10 @@ CREATE TABLE IF NOT EXISTS items (
     name VARCHAR(255),
     unit VARCHAR(50),
     optimumStock INT DEFAULT 0,
-    category VARCHAR(100)
+    category VARCHAR(100),
+    rak VARCHAR(100),
+    category_nomenklatur VARCHAR(100),
+    flags VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
@@ -57,9 +60,13 @@ echo "$ITEMS_JSON" | jq -c '.[]' | while read row; do
     UNIT=$(echo $row | jq -r '.unit')
     STOCK=$(echo $row | jq -r '.optimumStock // 0')
     CAT=$(echo $row | jq -r '.category // "Umum"')
-    
+    RAK=$(echo $row | jq -r '.rak // ""')
+    NOMEN=$(echo $row | jq -r '.category_nomenklatur // ""')
+    FLAGS=$(echo $row | jq -r '.flags // ""')
+
     mysql -u $DB_USER -D $DB_NAME -e \
-    "INSERT IGNORE INTO items (id, name, unit, optimumStock, category) VALUES ('$ID', '$NAME', '$UNIT', $STOCK, '$CAT');"
+    "INSERT IGNORE INTO items (id, name, unit, optimumStock, category, rak, category_nomenklatur, flags) VALUES ('$ID', '$NAME', '$UNIT', $STOCK, '$CAT', '$RAK', '$NOMEN', '$FLAGS');"
+    ON DUPLICATE KEY UPDATE rak=VALUES(rak), category_nomenklatur=VALUES(category_nomenklatur), flags=VALUES(flags);"
 done
 
 # 4. Mengambil dan Memasukkan Data Transaksi
